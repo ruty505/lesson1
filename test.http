@@ -1,0 +1,85 @@
+### 1. כל הספרים (200)
+GET http://localhost:5000/books
+
+### 2. ספר לפי קוד (200)
+GET http://localhost:5000/books/11
+
+### 3. ספר שלא קיים (404)
+GET http://localhost:5000/books/999
+
+### 4. כתובת שלא קיימת (404 מ-notFound)
+GET http://localhost:5000/test
+
+### 5. הרשמה (201)
+POST http://localhost:5000/users/signup
+Content-Type: application/json
+
+{"name": "דנה", "email": "d444@gmail.com", "password": "1111"}
+
+### 6. אותה הרשמה שוב (409, אימייל קיים)
+POST http://localhost:5000/users/signup
+Content-Type: application/json
+
+{"name": "דנה", "email": "d444@gmail.com", "password": "1111"}
+
+### 7. הרשמה בלי סיסמה (400)
+POST http://localhost:5000/users/signup
+Content-Type: application/json
+
+{"name": "דנה", "email": "x@gmail.com"}
+
+### 8. התחברות (200)
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{"email": "y111@gmail.com", "password": "1528"}
+
+### 9. התחברות עם סיסמה שגויה (404)
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{"email": "y111@gmail.com", "password": "0000"}
+
+### 10. כל המשתמשים (200)
+GET http://localhost:5000/users
+
+### 11. השאלת ספר 33 ליאיר (200)
+POST http://localhost:5000/books/33/borrow
+Content-Type: application/json
+
+{"customerId": 111}
+
+### 12. השאלה שוב של אותו ספר (400, כבר מושאל)
+POST http://localhost:5000/books/33/borrow
+Content-Type: application/json
+
+{"customerId": 111}
+
+### 13. החזרת ספר 33 (200)
+POST http://localhost:5000/books/33/return
+Content-Type: application/json
+
+{"customerId": 111}
+
+### 14. החזרה ע"י מי שלא לקח את הספר (400)
+POST http://localhost:5000/books/33/return
+Content-Type: application/json
+
+{"customerId": 333}
+
+### 15. הוספת ספר (201)
+POST http://localhost:5000/books
+Content-Type: application/json
+
+{"name": "ספר חדש", "category": "ילדים", "price": 10}
+
+### 16. עדכון המחיר של הספר החדש (200)
+PUT http://localhost:5000/books/45
+Content-Type: application/json
+
+{"price": 25}
+
+### 17. מחיקת הספר החדש (200)
+DELETE http://localhost:5000/books/45
+
+  
